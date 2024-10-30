@@ -7,6 +7,8 @@ router.post('/', validateAdmin ,adminController.create);
 
 router.post('/login', adminController.login);
 
+router.post('/forgotP', adminController.forgetP);
+
 router.get('/', adminController.getAll);
 
 router.get('/:id',  validateAdminId, adminController.getOne);

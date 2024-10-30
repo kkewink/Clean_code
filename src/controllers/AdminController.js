@@ -53,6 +53,26 @@ const adminController = {
     forgetP: async(req,res) =>{
         try {
             
+            const data = {
+                nome : req.body.nome,
+                email : req.body.email,
+                novaSenha : req.body.novaSenha
+            }
+
+            const adm = await adminService.forgotP(data);
+
+            if(!adm){
+                return res.status(400).json({
+                    msg : "Acesso negado"
+                })
+            }
+
+            return res.status(200).json({
+                msg : "Senha trocada com sucesso",
+                adm
+            })
+
+            
         } catch (error) {
             console.log(error);
             return res.status(400).json({

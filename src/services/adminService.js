@@ -48,7 +48,19 @@ const adminService = {
 
     forgotP: async(data) =>{
         try {
-                
+
+
+            const adm = await Admin.findOne({where : {nome : data.nome, email : data.email}});
+
+            const senhaCript = await bcrypt.compare(data.senha , adm.senha );
+            
+            console.log(senhaCript)
+            
+            if(!adm){
+                return null
+            }
+
+            return adm
 
 
         } catch (error) {
